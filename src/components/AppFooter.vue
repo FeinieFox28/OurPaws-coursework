@@ -61,6 +61,9 @@ h3, h2{
 }
 
 @media (max-width: 414px) {
+  .footer{
+    width: 440px;
+  }
 .container {
   flex-direction: column;
   align-items: center;

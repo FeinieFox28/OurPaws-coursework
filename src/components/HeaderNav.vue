@@ -21,7 +21,7 @@ nav{
     position: absolute;
     top: 0;
     left: 0;
-    height: 70px;
+    height: auto;
     background: linear-gradient(110deg, #5b442b, #1f1f1f, rgb(29, 28, 28));
     display: flex;
     justify-content: center;
@@ -46,6 +46,7 @@ nav a {
 }
 @media (max-width: 414px) {
   nav {
+    width: 440px;
     display: flex;
     flex-wrap: wrap;
     height: auto;

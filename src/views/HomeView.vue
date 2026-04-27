@@ -183,7 +183,7 @@ import ItemList from '../components/ItemList.vue'
 
 @media (max-width: 414px) {
     .home {
-        margin-top: 80px;
+        margin-top: 50px;
         padding: 10px;
     }
     .hero {
