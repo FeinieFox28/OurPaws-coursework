@@ -5,12 +5,11 @@ import { db } from '../firebase'
 const items = ref([])
 const loading = ref(false)
 
-let isLoaded = false // 🔥 защита от повторной загрузки
-
+let isLoaded = false 
 export function useItems() {
 
   async function fetchItems() {
-    if (isLoaded) return // 🔥 не загружаем второй раз
+    if (isLoaded) return
 
     loading.value = true
 
