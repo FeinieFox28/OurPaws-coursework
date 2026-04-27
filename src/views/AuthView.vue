@@ -2,7 +2,9 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import { getFirestore, doc, setDoc } from "firebase/firestore"
 
+const db = getFirestore()
 const auth = getAuth()
 const router = useRouter()
 
@@ -17,7 +19,12 @@ const handleAuth = async () => {
 
   try {
     if (mode.value === 'register') {
-      await createUserWithEmailAndPassword(auth, email.value, password.value)
+      const res = await createUserWithEmailAndPassword(auth, email.value, password.value)
+      await setDoc(doc(db, "users", res.user.uid), {
+        email: email.value,
+        name: name.value,
+        role: email.value === 'admin@mail.com' ? 'admin' : 'user'
+      })
       message.value = "Регистрация успешна"
     } else {
       await signInWithEmailAndPassword(auth, email.value, password.value)

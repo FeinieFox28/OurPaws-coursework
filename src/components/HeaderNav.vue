@@ -1,18 +1,14 @@
 <script setup>
-import { ref } from 'vue'
-import { getAuth, onAuthStateChanged } from "firebase/auth"
-const auth = getAuth()
-const user = ref(null)
-onAuthStateChanged(auth, (u) => {
-  user.value = u
-})
+import { useUser } from '../composables/useUser'
+
+const { user, role } = useUser()
 </script>
 <template>
     <nav>
         <router-link to="/" class="logo">OurPaws</router-link>
         <router-link to="/">Главная</router-link>
         <router-link to="/animal">Животные</router-link>
-        <router-link to="/create">Добавить животное</router-link>
+        <router-link v-if="role === 'admin'" to="/create">Добавить животное</router-link>
         <router-link to="/about">О приюте</router-link>
         <router-link v-if="!user" to="/auth">Войти</router-link>
         <router-link v-else to="/profile">Учетная запись</router-link>
